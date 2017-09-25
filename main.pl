@@ -1,13 +1,15 @@
-file_to_list :-
-    open('assets/logo.txt', read, Str),
-    read_file(Str,Lines),
-    close(Str),
-    write(Lines), nl.
+% Model for the game structure
 
-read_file(Stream,[]) :-
-    at_end_of_stream(Stream).
+play(NO) :- write('-- GAME OVER --'), nl, !.
 
-read_file(Stream,[X|L]) :-
-    \+ at_end_of_stream(Stream),
-    read(Stream,X),
-    read_file(Stream,L).
+play :- write('-- Welcome to a shitty Batman deduction game'), nl,
+        write('-- Your objective is to track down Black Mask and discover...'), nl,
+        write('-- 1 - Choice 1 ...'), nl,
+        write('-- 2 - Choice 2 ...'), nl,
+        read(choice),
+        step1(choice).
+
+play(YES) :- play.
+
+% Next step and choice from previous one
+step1(1) :- write('-- Something --'), nl, !.
