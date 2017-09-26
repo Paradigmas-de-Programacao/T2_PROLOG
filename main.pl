@@ -1,4 +1,4 @@
-% Model for the game structure
+  % Model for the game structure
 
 play(no) :- write('-- GAME OVER --'), nl, !.
 play :-
@@ -37,6 +37,9 @@ computer_options(1, Caso) :-
         see_person_information(Person, Caso).
 
 see_person_information(1, Caso) :-
+        is_an_ally(poison_ivy, Ally),
+        bagof(Enemy,is_an_enemy(poison_ivy, Enemy), Enemies),
         write('-- 1 - HERA VENENOSA INFORMATION --'), nl,
-        write('-- HERA INFORMATION --'), nl,
+        write('-- ENEMIES : --'), write(Enemies), nl,
+        write('-- ALLIES : --'), write(Ally), nl,
         caso(Caso).

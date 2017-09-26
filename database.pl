@@ -1,5 +1,8 @@
 % enemies
 
+is_an_enemy(poison_ivy, batman).
+is_an_enemy(poison_ivy, joker).
+
 is_an_enemy(joker,batman).
 is_an_enemy(harley_quinn, batman).
 is_an_enemy(black_mask, batman).
@@ -41,3 +44,4 @@ is_an_ally(james_gordon, batman).
 is_an_ally(robin, batman).
 is_an_ally(barbara_gordon, batman).
 is_an_ally(lucius_fox, batman).
+is_an_ally(poison_ivy, harley_quinn).
