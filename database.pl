@@ -1,6 +1,10 @@
 % enemies
 
-id(poison_ivy, 1).
+person_id(poison_ivy, 1).
+
+place_id(gotham_city_bank, 1).
+
+weapon_id(freeze_gun, 1).
 
 is_an_enemy(poison_ivy, batman).
 is_an_enemy(poison_ivy, joker).
