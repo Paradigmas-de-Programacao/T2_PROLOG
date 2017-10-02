@@ -1,3 +1,14 @@
+:- dynamic affirmative/1.
+:- dynamic negative/1.
+:- dynamic solve/0.
+:- dynamic culprit/1.
+:- dynamic clue/1.
+:- dynamic affirmative_clue/2.
+:- dynamic analysis/0.
+:- dynamic clearBase/1.
+:- dynamic clearBase1/1.
+
+
 % Importing modules
 :- [game, database].
 
@@ -24,6 +35,7 @@ caso(1) :-
         write('-- 1 - PEOPLE INFORMATION --'), nl,
         write('-- 2 - PLACES INFORMATION --'), nl,
         write('-- 3 - WEAPONS INFORMATION --'), nl,
+        write('-- 4 - SOLVE THE CASE --'), nl,
 
         % Escolhe qual tipo de informação ele deseja = Pessoas, Locais, Armamento.
         read(Options),
@@ -62,6 +74,60 @@ computer_options(3, Caso) :-
         read(Id),
         weapon_id(Weapon, Id),
         see_weapons_information(Weapon, Caso).
+
+computer_options(4, Caso) :-
+        cls,
+        culprit(SVillain).
+
+% symbolic
+affirmative(nothing).
+
+clearBase(X):- clearBase1(X), fail.
+clearBase(X).
+
+clearBase1(X):- retract(X).
+clearBase1(X).
+
+
+culprit(joker) :- clue(wears_purple),
+                  clue(uses_gun),
+                  clue(laughs),
+                  clue(has_one_ally),
+                  solve.
+
+clue(wears_purple) :-
+        write('Does the suspect wears purple? (y/n)'),nl,
+        read(AnswerPurple),
+        affirmative_clue(AnswePurple, wears_purple).
+
+
+clue(uses_gun):-
+        write('Does the suspect uses a gun? (y/n)'),nl,
+        read(AnswerGun),
+        affirmative_clue(AnswerGun, uses_gun).
+
+
+clue(laughs):-
+        write('Does the suspect laughs at the crime scene? (y/n)'),nl,
+        read(AnswerLaughs), affirmative_clue(AnswerLaughs, laughs).
+
+
+clue(has_one_ally):-
+        write('Does the suspect has only one ally? (y/n)'),nl,
+        read(AnswerOneAlly),
+        affirmative_clue(AnswerOneAlly, has_one_ally).
+
+affirmative_clue('y', Clue) :- asserta(affirmative(Clue)).
+affirmative_clue('n', Clue).
+
+solve :-
+        analysis,
+        write('The culprit data matches the Joker!'), nl, !.
+
+solve :- write('The culprit was not the Joker !'), nl, !.
+
+analysis :- (affirmative(wears_purple), affirmative(uses_gun), affirmative(laughs), affirmative(has_one_ally)).
+
 
 see_person_information(Person, Caso) :-
         cls,
