@@ -1,3 +1,5 @@
+% reads from a txt file and prints
+
 file_to_list :-
     open('assets/logo.txt', read, Str),
     read_file(Str,Lines),

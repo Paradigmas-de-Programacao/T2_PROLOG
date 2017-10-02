@@ -1,13 +1,15 @@
-  % Model for the game structure
+% Importing modules
+:- [game, database].
 
 cls :- write('\e[H\e[2J').
 
 play(no) :- write('-- GAME OVER --'), nl, !.
 play :-
         cls,
-        write('-- Welcome to a shitty Batman deduction game'), nl,
-        write('-- Your objective is solve all archived cases of police...'), nl,
-        write('-- 1 - Case 2: Red Apple ...'), nl,
+        file_to_list, nl,
+        write('-- Welcome to a Batman deduction game --'), nl,
+        write('-- Your objective is solve all archived cases of police --'), nl,
+        write('-- 1 - Case 2: Red Apple --'), nl,
 
         read(Choice),
         caso(Choice).
